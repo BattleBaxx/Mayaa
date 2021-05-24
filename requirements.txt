@@ -1,2 +1,7 @@
 discord.py==1.7.1
 python-dotenv==0.17.1
+Discord-Anti-Spam==0.8.0
+fuzzywuzzy==0.18.0
+psycopg2==2.8.6
+SQLAlchemy==1.4.15
+greenlet==1.1.0
