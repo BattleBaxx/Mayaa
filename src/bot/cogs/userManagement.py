@@ -7,7 +7,7 @@ class userManagement(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.bot.handler = AntiSpamHandler(self.bot)
+        self.bot.handler = AntiSpamHandler(self.bot, warn_only=True)
 
     @commands.Cog.listener()
     async def on_ready(self):

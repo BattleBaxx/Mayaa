@@ -19,7 +19,7 @@ class Bot(commands.AutoShardedBot):
                          description=DESCRIPTION, pm_help=None, help_attrs=dict(hidden=True),
                          fetch_offline_members=False, heartbeat_timeout=150.0, intents=intents)
         self.bot_token = BOT_TOKEN
-        self.db = Database(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
+        self.db = Database.getInstance(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
 
         for filename in os.listdir('./bot/cogs'):
             if filename.endswith(".py"):
