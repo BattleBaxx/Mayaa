@@ -17,7 +17,7 @@ class Bot(commands.AutoShardedBot):
         intents.members = True
         super().__init__(command_prefix=COMMAND_PREFIX,
                          description=DESCRIPTION, pm_help=None, help_attrs=dict(hidden=True),
-                         fetch_offline_members=False, heartbeat_timeout=150.0, intents=intents)
+                         fetch_offline_members=False, heartbeat_timeout=150.0, intents=intents, case_insensitive=True)
         self.bot_token = BOT_TOKEN
         self.db = Database.getInstance(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
 

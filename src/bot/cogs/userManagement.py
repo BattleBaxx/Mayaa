@@ -26,10 +26,11 @@ class userManagement(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        try:
-            await self.bot.handler.propagate(message)
-        except Exception as e:
-            print(e)
+        if  message.channel.id != 846328332224430090:
+            try:
+                await self.bot.handler.propagate(message)
+            except Exception as e:
+                print(e)
 
 
 def setup(bot):

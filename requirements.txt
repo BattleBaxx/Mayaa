@@ -6,3 +6,14 @@ psycopg2==2.8.6
 SQLAlchemy==1.4.15
 greenlet==1.1.0
 python-Levenshtein==0.12.2
+PyNaCl==1.4.0
+cffi==1.14.5
+pycparser==2.20
+six==1.16.0
+youtube-dl==2021.5.16
+beautifulsoup4==4.9.3
+soupsieve==2.2.1
+certifi==2020.12.5
+idna==2.10
+requests==2.25.1
+urllib3==1.26.4
