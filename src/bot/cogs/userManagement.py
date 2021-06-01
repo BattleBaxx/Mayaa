@@ -12,6 +12,7 @@ class userManagement(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("Started userMangement cog.")
+        await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=" -help"))
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -21,16 +22,16 @@ class userManagement(commands.Cog):
                               colour=discord.Color.blue())
         embed.set_author(name="Mayaa")
         embed.set_thumbnail(url=member.avatar_url)
-        welcome_channel = self.bot.get_channel(844873592360927252)
+        welcome_channel = self.bot.get_channel(844826625274019860)
         await welcome_channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if  message.channel.id != 846328332224430090:
-            try:
-                await self.bot.handler.propagate(message)
-            except Exception as e:
-                print(e)
+        # if  message.channel.id != 846328332224430090:
+        try:
+            await self.bot.handler.propagate(message)
+        except Exception as e:
+            print(e)
 
 
 def setup(bot):

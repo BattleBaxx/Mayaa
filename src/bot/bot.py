@@ -13,11 +13,9 @@ class Bot(commands.AutoShardedBot):
 
     def __init__(self):
 
-        intents = discord.Intents.default()
-        intents.members = True
         super().__init__(command_prefix=COMMAND_PREFIX,
                          description=DESCRIPTION, pm_help=None, help_attrs=dict(hidden=True),
-                         fetch_offline_members=False, heartbeat_timeout=150.0, intents=intents, case_insensitive=True)
+                         fetch_offline_members=False, heartbeat_timeout=150.0, intents=discord.Intents.all(), case_insensitive=True)
         self.bot_token = BOT_TOKEN
         self.db = Database.getInstance(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
 
@@ -28,15 +26,18 @@ class Bot(commands.AutoShardedBot):
     async def on_ready(self):
         print("Mayaa is online")
 
+
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.errors.CommandInvokeError):
-            await ctx.send(f"What you are attempting to do isn't implemented by the lazy devs 😱 | error: {error}")
+            await ctx.send(f"This command is not implemented yet. | error: {error}")
         elif isinstance(error, commands.DisabledCommand):
             await ctx.send('Sorry. This command is disabled and cannot be used.')
+        elif isinstance(error, commands.CommandNotFound):
+            await ctx.send(f'This command is not present!')
         elif isinstance(error, commands.NoPrivateMessage):
             await ctx.send('This command cannot be used in private messages.')
         elif isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send("You are missing required arguments in the command. :frowning:")
+            await ctx.send("You are missing required arguments in the command.")
         elif isinstance(error, commands.CommandInvokeError):
             original = error.original
             if not isinstance(original, discord.HTTPException):

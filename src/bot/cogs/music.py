@@ -28,7 +28,7 @@ class Music(commands.Cog):
     async def on_ready(self):
         print("Started Music cog.")
 
-    @commands.command()
+    @commands.command(help='Use this command to play any song with a youtube link or any query', brief="Play music")
     async def play(self, ctx, *, arg):
         if_song_exists = os.path.isfile("song.mp3")
         try:
@@ -38,7 +38,7 @@ class Music(commands.Cog):
             await ctx.send("Wait for the current playing music to end or use the 'stop' command.")
             return
 
-        voice_channel = discord.utils.get(ctx.guild.voice_channels, name='test')
+        voice_channel = discord.utils.get(ctx.guild.voice_channels, name='music')
         await voice_channel.connect()
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
 
@@ -64,7 +64,7 @@ class Music(commands.Cog):
                 os.rename(file, "song.mp3")
         voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
-    @commands.command()
+    @commands.command(help='Use this command to make the bot leave the voice channel', brief="Leave the vc")
     async def leave(self, ctx):
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
         if voice.is_connected():
@@ -72,7 +72,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("Mayaa is not connected to a voice channel.")
 
-    @commands.command()
+    @commands.command(help='Use this command to pause the song the bot is playing', brief="Pause the song")
     async def pause(self, ctx):
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
         if voice.is_playing():
@@ -80,7 +80,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("Mayaa is not playing audio.")
 
-    @commands.command()
+    @commands.command(help='Use this command to resume the song the bot is playing', brief="Resume the song")
     async def resume(self, ctx):
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
         if voice.is_paused():
@@ -88,7 +88,7 @@ class Music(commands.Cog):
         else:
             await ctx.send("Mayaa is playing audio.")
 
-    @commands.command()
+    @commands.command(help='Use this command to stop the song the bot is playing', brief="Stop the song")
     async def stop(self, ctx):
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
         voice.stop()
