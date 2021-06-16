@@ -28,5 +28,5 @@ docker-compose up -d
 python launcher.py
 ```
 
-##Help
+## Help
  - For more details about the commands use the *help* command.
